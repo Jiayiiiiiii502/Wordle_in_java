@@ -10,9 +10,7 @@ public class Game {
     private String target;
   // TODO: Implement constructor with String parameter
     public Game(String filename){
-      //File file=new File(filename);
-      File file=new File("words.txt");
-
+      target=filename;
     }
   // TODO: Implement constructor with int and String parameters
     public Game(int num,String filename){

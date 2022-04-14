@@ -21,5 +21,6 @@ public class Wordle {
 
     game.play();
     game.save("build/lastgame.txt");
+    //System.out.println("The all number of games is "+game.all_num("data/history.txt"));
   }
 }

@@ -15,7 +15,7 @@ public class WordList {
         File file=new File(filename);
         FileReader fileReader=new FileReader(file);
         BufferedReader bufferedReader=new BufferedReader(fileReader);
-        String str=null;
+        String str;
         while((str=bufferedReader.readLine())!=null){
             if(str.trim().length()>2){
                 words.add(str);

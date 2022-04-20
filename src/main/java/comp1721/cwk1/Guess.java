@@ -19,7 +19,7 @@ public class Guess {
     if ((num <= 6) && (num >= 1)) {
       guessNumber = num;
     } else {
-      throw new GameException("Invalid choice!\n");
+      throw new GameException("Invalid!");
     }
   }
 
@@ -34,7 +34,7 @@ public class Guess {
     }
     //validate word length and type
     if (word.length() == 5) {
-      int i = 0;
+      int i;
       int m = 0;
       for (i = 0; i < 5; i++) {
         int chr = word.charAt(i);
@@ -157,7 +157,7 @@ public class Guess {
       System.out.print("The ");
       for (int k = 0; k < perfect_num; k++) {
         if (k == perfect_num - 1) {
-          System.out.print(String.valueOf(perfect.get(k)));
+          System.out.print(perfect.get(k));
           break;
         }
         System.out.print((perfect.get(k)) + ", ");
@@ -169,7 +169,7 @@ public class Guess {
       System.out.print("The ");
       for (int k = 0; k < correct_num; k++) {
         if (k == correct_num - 1) {
-          System.out.print(String.valueOf(correct.get(k)));
+          System.out.print(correct.get(k));
           break;
         }
         System.out.print((correct.get(k)) + ", ");
@@ -186,11 +186,10 @@ public class Guess {
     char[] tarArray=target.toCharArray();
     char[] choArray=chosenWord.toCharArray();
     String[] choout=new String[5];
-    //List<String> choArray_out=new ArrayList<>();
-    int i=0;
-    int j=0;
-    int m=0;
-    int temp=0;
+    int i;
+    int j;
+    int m;
+    int temp;
     for(m=0;m<choArray.length;m++){
       choout[m]="\033[30;107m "+choArray[m]+" \033[0m";
     }
@@ -211,22 +210,18 @@ public class Guess {
       }
     }
 
-    String output = choout[0] + choout[1] + choout[2] + choout[3] + choout[4];
-    return output;
+
+
+    return choout[0] + choout[1] + choout[2] + choout[3] + choout[4];
   }
 
 
 
   // TODO: Implement matches(), giving it a String parameter and boolean return type
-  public boolean matches(String target){//evaluate player's guess
+  public boolean matches(String target){
     //return true if the player's chosen word matches the target one
     //return false if doesn't match
     target=target.toUpperCase();
-    if(target.equals(chosenWord)){
-      return true;
-    }
-    else{
-      return false;
-    }
+    return target.equals(chosenWord);
   }
 }

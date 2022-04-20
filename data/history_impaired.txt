@@ -1,0 +1,8 @@
+The game number is 305
+Player has won the game!
+The guess number that player has made is 0
+-------------------------------------------------------------------------------------------------
+The game number is 234
+Player has won the game!
+The guess number that player has made is 0
+-------------------------------------------------------------------------------------------------

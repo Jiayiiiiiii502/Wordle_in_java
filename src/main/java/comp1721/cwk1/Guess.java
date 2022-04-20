@@ -1,5 +1,6 @@
 package comp1721.cwk1;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.Scanner;
 public class Guess {
   private int guessNumber;//range:1-6
   private String chosenWord;//store the chosen word by the player
+  private String chosen_ini;
   // Use this to get player input in readFromPlayer()
   private static final Scanner INPUT = new Scanner(System.in);
 
@@ -27,6 +29,7 @@ public class Guess {
   // TODO: Implement constructor with int and String parameters
   public Guess(int num, String word) {
     //validate guessNumber
+
     if ((num <= 6) && (num >= 1)) {
       guessNumber = num;
     } else {
@@ -70,7 +73,30 @@ public class Guess {
   public void readFromPlayer() {
     //if Guess object is created without initializing the chosen word,
     // this can obtain the word from the player
-    chosenWord = INPUT.nextLine();
+    chosen_ini = INPUT.nextLine();
+    if (chosen_ini.length() == 5) {
+      int i;
+      int m = 0;
+      for (i = 0; i < 5; i++) {
+        int chr = chosen_ini.charAt(i);
+        if ((chr < 65 || chr > 90) && (chr < 97 || chr > 122)) {
+          System.out.println(chr);
+          m++;
+        }
+        if (m > 0) {
+          //throw new GameException("Invalid choice!\n");
+          System.out.println("Invalid choice!\n");
+          System.exit(0);
+        } else {
+          chosenWord = chosen_ini.toUpperCase();
+        }
+      }
+    } else {
+      //throw new GameException("Invalid choice!\n");
+      System.out.println("Invalid choice!\n");
+      System.exit(0);
+    }
+    //chosen_ini=INPUT.nextLine();
   }
 
 

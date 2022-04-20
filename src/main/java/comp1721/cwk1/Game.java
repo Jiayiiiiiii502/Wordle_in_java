@@ -65,7 +65,7 @@ public class Game {
 
 
   // TODO: Implement constructor with int and String parameters
-  public Game(int num, String filename) throws IOException {
+  public Game(int num, String filename)  throws IOException {
     //num is read from user to get target
     gameNumber = num;
     WordList obj = new WordList(filename);
@@ -83,31 +83,24 @@ public class Game {
 
 
   // TODO: Implement play() method
-  public void play() throws IOException {
+  public void play()  throws IOException{
     //play en entire game of wordle
     //need to create and store Guess objects
     //check each guess, print the string returned by the compareWith()
     System.out.println("WORLDE " + gameNumber);
     System.out.println("\n");
     //remember to delete
-    System.out.println("Answer is: " + target);
+    //System.out.println("Answer is: " + target);
     int i = 1;
     out = false;
     while (i <= 6) {
+
       System.out.print("Enter guess (" + i + "/6): ");
-      Scanner scan = new Scanner(System.in);
-      //the input word
-      String chosen = scan.nextLine();
-      chosens.add(chosen);
       //create Guess object
-      Guess guess;
-      //check use which method
-      if (chosen.length() > 0) {
-        guess = new Guess(i, chosen);
-      } else {
-        guess = new Guess(i);
-        guess.readFromPlayer();
-      }
+      Guess guess=new Guess(i);
+      guess.readFromPlayer();
+      String chosen=guess.getChosenWord();
+      chosens.add(chosen);
       System.out.println(guess.compareWith(target));
       result.add(guess.compareWith(target));
       //check if it is over
@@ -149,14 +142,14 @@ public class Game {
     ImageIO.write(image, "jpg", output);
 
 //
-//
-    JFrame frame=new JFrame("Guess distribution");
-    frame.setLayout(new GridLayout(2,2,10,10));
-    //frame.add(frame1);
-    //frame.add(new BarChart().getChartPanel());   //
-    frame.add(new Game().setPic());
-    frame.setBounds(0, 0, 900, 800);
-    frame.setVisible(true);
+////
+//    JFrame frame=new JFrame("Guess distribution");
+//    frame.setLayout(new GridLayout(2,2,10,10));
+//    //frame.add(frame1);
+//    //frame.add(new BarChart().getChartPanel());   //
+//    frame.add(new Game().setPic());
+//    frame.setBounds(0, 0, 900, 800);
+//    frame.setVisible(true);
 
   }
 
@@ -544,48 +537,49 @@ public class Game {
       times_chosens.add(map.get(chosens.get(m)));
     }
     Collections.reverse(times_chosens);
+    System.out.println(times_chosens);
     return new ArrayList<>(map.values());
   }
 
 
 
 
-
-
 //
-  //another way to draw picture:
-  public Component setPic(){
-    //CategoryDataset dataset = getDataSet();//
-    DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-    for(int i=0;i<chosens.size();i++){
-      System.out.println(times_chosens.get(i));
-      dataset.addValue(times_chosens.get(i),chosens.get(i),chosens.get(i));
-    }
-
-    JFreeChart chart = ChartFactory.createBarChart3D(
-            "Histogram", //
-            "Guess Words", //
-            "Appearances", //
-            dataset, //
-            PlotOrientation.VERTICAL, //
-            true, //
-            false,  //
-            false  //
-    );
-
-    CategoryPlot plot=chart.getCategoryPlot();//
-    CategoryAxis domainAxis=plot.getDomainAxis();         //
-    domainAxis.setLabelFont(new Font("Arial",Font.BOLD,14));         //
-    domainAxis.setTickLabelFont(new Font("Arial",Font.BOLD,12));  //
-    ValueAxis rangeAxis=plot.getRangeAxis();//
-    rangeAxis.setLabelFont(new Font("Arial",Font.BOLD,15));
-    chart.getLegend().setItemFont(new Font("Arial", Font.BOLD, 15));
-    chart.getTitle().setFont(new Font("Arial",Font.BOLD,20));//
-
-    ChartPanel frame1 = new ChartPanel(chart, true);  //
-
-    return frame1;
-  }
-
+//
+////
+//  //another way to draw picture:
+//  public Component setPic(){
+//    //CategoryDataset dataset = getDataSet();//
+//    DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+//    for(int i=0;i<chosens.size();i++){
+//      System.out.println(times_chosens.get(i));
+//      dataset.addValue(times_chosens.get(i),chosens.get(i),chosens.get(i));
+//    }
+//
+//    JFreeChart chart = ChartFactory.createBarChart3D(
+//            "Histogram", //
+//            "Guess Words", //
+//            "Appearances", //
+//            dataset, //
+//            PlotOrientation.VERTICAL, //
+//            true, //
+//            false,  //
+//            false  //
+//    );
+//
+//    CategoryPlot plot=chart.getCategoryPlot();//
+//    CategoryAxis domainAxis=plot.getDomainAxis();         //
+//    domainAxis.setLabelFont(new Font("Arial",Font.BOLD,14));         //
+//    domainAxis.setTickLabelFont(new Font("Arial",Font.BOLD,12));  //
+//    ValueAxis rangeAxis=plot.getRangeAxis();//
+//    rangeAxis.setLabelFont(new Font("Arial",Font.BOLD,15));
+//    chart.getLegend().setItemFont(new Font("Arial", Font.BOLD, 15));
+//    chart.getTitle().setFont(new Font("Arial",Font.BOLD,20));//
+//
+//    ChartPanel frame1 = new ChartPanel(chart, true);  //
+//
+//    return frame1;
+//  }
+//
 
 }
